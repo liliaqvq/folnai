@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    <button id="copyButton" class="copy-button" style="display: none; top: 520px;">Copiar PIN</button>
+    <button id="copyButton" class="copy-button" style="display: none; top: 520px;">Copiar PIN e ir a canjearlos!</button>
     <h4>Los otros 2 regalos eran 99.999.999 pesos o una isla de 900 hectáreas y 4 caballitos</h4>
 
     <audio id="bgMusic" controls autoplay loop style="display: none;">
@@ -121,22 +121,23 @@
             document.getElementById('copyButton').style.display = 'block'; // Mostrar el botón de copiar después de voltear
             document.getElementById('confetti-container').style.display = 'block'; // Mostrar el confeti después de voltear
         });
-
-
+    
+    
         document.getElementById('copyButton').addEventListener('click', function() {
             var code = "27KTYT5SSB4JA755"; // Asigna aquí el valor del PIN manualmente
-            copyToClipboard(code);
+            copyToClipboardAndRedirect(code); // Llama a la función modificada
         });
-
-        function copyToClipboard(text) {
+    
+        function copyToClipboardAndRedirect(text) {
             var dummy = document.createElement("textarea");
             document.body.appendChild(dummy);
             dummy.value = text;
             dummy.select();
             document.execCommand("copy");
             document.body.removeChild(dummy);
-            alert("¡El código ha sido copiado!");
+            window.location.href = "https://www.fortnite.com/vbuckscard";
         }
     </script>
+    
 </body>
 </html>
