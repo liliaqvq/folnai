@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Puertas</title>
+    <style>
+        .door-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .door {
+            cursor: pointer;
+        }
+        .door img {
+            width: 200px;
+            height: auto;
+        }
+        .prize {
+            width: 300px; /* Ajusta este valor para hacer la imagen más grande */
+            height: auto;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #view-prize-btn {
+            display: none;
+            background-color: #4CAF50;
+            border: none;
+            color: white; /* Color de texto */
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px; /* Bordes redondeados */
+            box-shadow: 0 9px #999; /* Sombra del botón */
+            transition: all 0.3s ease; /* Transición para los cambios */
+        }
+        #view-prize-btn:hover {
+            background-color: #45a049; /* Color de fondo al pasar el ratón */
+        }
+        #view-prize-btn:active {
+            background-color: #45a049;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px); /* Movimiento hacia abajo al hacer clic */
+        }
+        .confetti {
+            position: absolute;
+            top: -100px; /* Ajusta la posición inicial según sea necesario */
+            left: 50%; /* Centra horizontalmente */
+            transform: translateX(-50%);
+            animation: confetti-fall 2s linear infinite; /* Duración de la animación más rápida */
+        }
+
+        .confetti img {
+            width: 1600px; /* Ajusta el tamaño de la imagen más pequeño */
+            height: auto;
+        }
+
+        @keyframes confetti-fall {
+            0% { top: -100px; }
+            100% { top: 100%; }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="confetti-container" id="confetti-container" style="display: none;">
+        <!-- Aquí puedes agregar imágenes de papelillos de celebración -->
+        <div class="confetti"><img src="confetti.png" alt="Confetti"></div>
+        <div class="confetti"><img src="confetti.png" alt="Confetti"></div>
+        <div class="confetti"><img src="confetti.png" alt="Confetti"></div>
+        <div class="confetti"><img src="confetti.png" alt="Confetti"></div>
+        <div class="confetti"><img src="confetti.png" alt="Confetti"></div>
+    </div>
+
+    <h2 style="text-align: center;">Elija una puelta mágika para ganarse un premio SHEEHHHHH</h2>
+
+    <div class="door-container">
+        <div class="door" id="door1">
+            <img src="minecraft-door-png-4.png" alt="Puerta 1">
+        </div>
+        <div class="door" id="door2">
+            <img src="minecraft-door-png-4.png" alt="Puerta 2">
+        </div>
+        <div class="door" id="door3">
+            <img src="minecraft-door-png-4.png" alt="Puerta 3">
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button id="view-prize-btn">Ver premio</button>
+    </div>
+
+    <script>
+        // Función para manejar el clic en una puerta
+        function handleDoorClick(event) {
+            // Evitar que se pueda hacer clic nuevamente
+            document.querySelectorAll('.door').forEach(door => {
+                door.removeEventListener('click', handleDoorClick);
+                door.style.cursor = 'default';
+            });
+
+            // Cambiar la imagen de la puerta clickeada y agregar la clase de premio
+            const imgElement = event.currentTarget.querySelector('img');
+            imgElement.src = 'fortnite-2800-vbucks.png';
+            imgElement.classList.add('prize');
+
+            // Mostrar el botón "Ver premio" después de un breve retraso
+            setTimeout(() => {
+                document.getElementById('view-prize-btn').style.display = 'block';
+
+                // Mostrar los papelillos de celebración
+                document.getElementById('confetti-container').style.display = 'block';
+            }, 500); // 500 milisegundos de retraso
+        }
+
+        // Añadir el evento de clic a todas las puertas
+        document.querySelectorAll('.door').forEach(door => {
+            door.addEventListener('click', handleDoorClick);
+        });
+
+        // Función para manejar el clic en "Ver premio"
+        document.getElementById('view-prize-btn').addEventListener('click', function() {
+            // Redireccionar a otra página HTML
+            window.location.href = 'index2.html';
+        });
+
+    </script>
+</body>
+</html>
